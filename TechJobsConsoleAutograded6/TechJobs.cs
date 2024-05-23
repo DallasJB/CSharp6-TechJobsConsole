@@ -44,7 +44,8 @@ namespace TechJobsConsoleAutograded6
                     else
                     {
                         List<string> results = JobData.FindAll(columnChoice);
-
+                        // Bonus Mission - Sorting list results
+                        results.Sort();
                         Console.WriteLine(Environment.NewLine + "*** All " + columnChoices[columnChoice] + " Values ***");
                         foreach (string item in results)
                         {
@@ -64,7 +65,7 @@ namespace TechJobsConsoleAutograded6
                     // Fetch results
                     if (columnChoice.Equals("all"))
                     {
-                        Console.WriteLine("Search all fields not yet implemented.");
+                        PrintJobs(JobData.FindByValue(searchTerm));
                     }
                     else
                     {
@@ -132,34 +133,23 @@ namespace TechJobsConsoleAutograded6
             return choiceKeys[choiceIdx];
         }
 
-        // TODO: complete the PrintJobs method.
         public void PrintJobs(List<Dictionary<string, string>> someJobs)
         {
             if (someJobs.Count == 0)
             {
                 Console.WriteLine("No results");
+                return;
             }
-            else
+
+            foreach (Dictionary<string, string> job in someJobs)
             {
-                foreach (var job in someJobs)
+                Console.WriteLine("\n*****");
+                foreach (KeyValuePair<string, string> column in job)
                 {
-                    Console.WriteLine("No results");
-                
-                    if (job.ContainsKey("name"))
-                        Console.WriteLine($"name: {job["name"]}");
-                    if (job.ContainsKey("employer"))
-                        Console.WriteLine($"employer: {job["employer"]}");
-                    if (job.ContainsKey("location"))
-                        Console.WriteLine($"location: {job["location"]}");
-                    if (job.ContainsKey("position type"))
-                        Console.WriteLine($"position type: {job["position type"]}");
-                    if (job.ContainsKey("core competency"))
-                        Console.WriteLine($"core competency: {job["core competency"]}");
-                    Console.WriteLine("");
-                    Console.WriteLine(Environment.NewLine); // Adds a blank line between job listings
+                    Console.WriteLine(column.Key + ": " + column.Value);
                 }
+                Console.WriteLine("*****");
             }
         }
     }
 }
-

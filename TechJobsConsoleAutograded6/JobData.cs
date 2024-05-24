@@ -2,6 +2,7 @@
 using System.Data.Common;
 using System.Text;
 
+
 namespace TechJobsConsoleAutograded6
 {
 	public class JobData

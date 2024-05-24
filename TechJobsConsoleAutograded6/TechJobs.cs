@@ -143,7 +143,7 @@ namespace TechJobsConsoleAutograded6
 
             foreach (Dictionary<string, string> job in someJobs)
             {
-                Console.WriteLine("\n*****");
+                Console.WriteLine($"{Environment.NewLine}*****");
                 foreach (KeyValuePair<string, string> column in job)
                 {
                     Console.WriteLine(column.Key + ": " + column.Value);
